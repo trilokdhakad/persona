@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-
-const examplePersonas = [
-  "A rebel street photographer from Tokyo",
-  "A retired Soviet chess grandmaster in Iceland",
-  "An anime-obsessed coder who loves street food",
-  "A Berlin art critic who only watches arthouse cinema",
-  "A jazz saxophonist living in 1980s New York"
-];
 
 function App() {
   const [personaInput, setPersonaInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [saved, setSaved] = useState([]);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchSavedPersonas();
+  }, []);
+
+  const fetchSavedPersonas = async () => {
+    const res = await fetch('http://localhost:8000/personas');
+    const data = await res.json();
+    setSaved(data);
+  };
 
   const handleGenerate = async () => {
     setLoading(true);
@@ -23,9 +26,7 @@ function App() {
     try {
       const response = await fetch('http://localhost:8000/persona', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ persona: personaInput })
       });
 
@@ -33,6 +34,7 @@ function App() {
 
       const data = await response.json();
       setResult(data);
+      fetchSavedPersonas();
     } catch (err) {
       setError('Failed to fetch response.');
     } finally {
@@ -41,41 +43,52 @@ function App() {
   };
 
   return (
-    <div className="app-container">
-      <h1>🧠 PersonaSwap</h1>
+    <div className="container">
+      <h1>PersonaSwap</h1>
       <p>Enter a persona description:</p>
 
       <textarea
+        className="textarea"
         rows="4"
         placeholder="e.g. A rebel street photographer from Tokyo"
         value={personaInput}
         onChange={(e) => setPersonaInput(e.target.value)}
       />
-
-      <div className="persona-buttons">
-        {examplePersonas.map((text, index) => (
-          <button key={index} onClick={() => setPersonaInput(text)}>
-            {text}
-          </button>
-        ))}
-      </div>
-
-      <button className="generate-button" onClick={handleGenerate} disabled={loading}>
+      <br />
+      <button onClick={handleGenerate} disabled={loading} className="button">
         {loading ? 'Generating...' : 'Generate Taste Profile'}
       </button>
 
-      {error && <p className="error-text">{error}</p>}
+      {error && <p className="error">{error}</p>}
 
       {result && (
-        <div className="result-block">
-          <h2>🎨 Persona Profile</h2>
-          <pre>{result.persona_profile}</pre>
+        <div className="result">
+          <div className="card">
+            <h2>🎨 Persona Profile</h2>
+            <p><strong>{result.persona}</strong></p>
+            <p>{result.summary}</p>
+          </div>
 
-          <h2>📡 Qloo Recommendations</h2>
-          <pre>{JSON.stringify(result.qloo_data, null, 2)}</pre>
+          <div className="card">
+            <h2>📡 Qloo Recommendations</h2>
+            <ul>
+              {Object.entries(result.qloo_data).map(([k, v]) => (
+                <li key={k}><strong>{k}</strong>: {v.join(', ')}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
 
-          <h2>📖 Narrative</h2>
-          <p>{result.narrative}</p>
+      {saved.length > 0 && (
+        <div className="saved">
+          <h2>🗂 Saved Personas</h2>
+          {saved.map((item, idx) => (
+            <div className="card" key={idx}>
+              <strong>{item.persona}</strong><br />
+              <small>{item.summary.slice(0, 80)}...</small>
+            </div>
+          ))}
         </div>
       )}
     </div>
