@@ -1,32 +1,34 @@
 # 🧠 PersonaSwap
 
-**PersonaSwap** is a solo-built project that fuses the cultural intelligence of **Qloo's Taste AI™** with the generative capabilities of **Google Gemini**, allowing users to explore how different personas would think, feel, and act based on their unique cultural preferences.
+**PersonaSwap** is a solo-built, full-stack AI project that fuses the cultural intelligence of **Qloo's Taste AI™** with the generative power of **Google Gemini**, allowing users to explore how different personas think, feel, and consume culture.
 
 ---
 
 ## 🌟 What Is PersonaSwap?
 
-> “What would an art critic from Berlin like to watch, eat, or listen to?”  
+> “What would an art critic from Berlin listen to?”  
 > “How would a Tokyo street photographer describe their world?”
 
-**PersonaSwap** is an AI-powered taste persona generator. You describe any fictional or real persona, and the app:
+**PersonaSwap** is an AI-powered *persona simulator*. You input any persona — real or fictional — and it generates:
 
-- Generates a **cultural profile & narrative** using **Gemini**
-- Enriches it with **real-world taste insights** using **Qloo**
-- Displays a complete lifestyle snapshot (music, dining, film, travel, etc.)
+- 🎭 A **cultural identity summary**
+- 🧠 A creative **narrative voice**
+- 📡 **Real-world taste predictions** via Qloo (e.g., movies, music)
+
+> Imagine simulating how anyone would live, love, or create — based on their taste.
 
 ---
 
 ## 💡 Why Is It Innovative?
 
-🔗 **Fusion of LLM + Taste AI**  
-> Not just text generation — actual human behavior predictions from real-world data
+🔗 **Fusion of LLMs + Real-World Taste Data**  
+Go beyond basic text gen — we integrate **actual human behavior patterns** through Qloo.
 
-🎭 **Persona Simulation**  
-> Go beyond ChatGPT — simulate how a person would live, feel, and experience culture
+🧠 **Empathic Persona Simulation**  
+Understand how someone would interact with the world — their culture, values, choices.
 
-🌍 **Universal Use Cases**  
-> Useful for marketers, storytellers, creators, sociologists, and personalization tech
+🔁 **Swap Perspectives Instantly**  
+Compare and contrast how different personas see the world.
 
 ---
 
@@ -34,30 +36,36 @@
 
 | Layer        | Tool                    |
 |-------------|--------------------------|
-| LLM         | Google Gemini (via API)  |
-| Taste Data  | Qloo Taste AI API        |
+| LLM         | Google Gemini            |
+| Taste Data  | Qloo Taste AI            |
 | Backend     | FastAPI (Python)         |
 | Frontend    | React.js                 |
+| Search Ready| FAISS-ready              |
+| Styling     | CSS (Tailwind dropped temporarily) |
+| Storage     | Pickle-based file DB     |
 | Environment | `venv`, `.env`           |
 
 ---
 
-## 🚀 Features
+## 🚀 Core Features
 
-- 🎨 Persona Profile Generator (Gemini)
-- 📡 Real-world Taste Preferences (Qloo)
-- ✍️ Auto Narrative Generator
-- 🧬 Ready for Embedding & Similarity Search (FAISS-ready)
-- 🧪 Easily extendable with persona history & comparison
-
+- 🧠 Persona Cultural Summary (via Gemini)
+- 📡 Real Taste Preferences (via Qloo)
+- ✍️ Narrative Style Writer
+- 🧬 Save + Compare Personas
+- 🔄 Ready for Embedding (FAISS-compatible)
+- 💾 Local persona persistence (`personas.pkl`)
 
 ---
 
-📌 Next Ideas
-- 🎯 Save and compare personas
-- 🧠 FAISS similarity embedding
-- 🎨 Visualize Qloo results (images, cards)
-- 🔄 Persona swap + empathy mode
+## 🧪 Features In Progress
+
+- 🔍 Semantic similarity search (FAISS)
+- 🎨 Qloo result cards with real-time data
+- 🔄 Persona Swap Mode (empathy view)
+- 👥 Profile Comparisons
+- 🌐 Public shareable persona profiles
+
 
 ---
 
