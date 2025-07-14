@@ -88,3 +88,14 @@ Compare and contrast how different personas see the world.
  - myenv\Scripts\activate   (In another terminal)
  - npm run dev
 
+---
+
+⚠️ Notes
+If Gemini or Qloo keys are invalid/missing, the app falls back to mocked data..
+For now, all persona data is saved locally to personas.pkl.
+
+---
+
+🧠 Built By
+Trilok Dhakad – MANIT, CS 2nd Year
+Solo-built for a hackathon exploring cultural empathy & taste simulation.
