@@ -91,8 +91,8 @@ Compare and contrast how different personas see the world.
 ---
 
 ⚠️ Notes
-If Gemini or Qloo keys are invalid/missing, the app falls back to mocked data..
-For now, all persona data is saved locally to personas.pkl.
+- If Gemini or Qloo keys are invalid/missing, the app falls back to mocked data.
+- For now, all persona data is saved locally to personas.pkl.
 
 ---
 
