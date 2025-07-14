@@ -71,12 +71,12 @@
 ## ✅ Run Instructions
 
 ### 🟢 Backend
-cd backend
-myenv\Scripts\activate
-python run.py
+ - cd backend
+ - myenv\Scripts\activate
+ - python run.py
 
 ### 🟢 Frontend
-cd persona-frontend
-myenv\Scripts\activate   (In another terminal)
-npm run dev
+ - cd persona-frontend
+ - myenv\Scripts\activate   (In another terminal)
+ - npm run dev
 
