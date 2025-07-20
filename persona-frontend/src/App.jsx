@@ -8,14 +8,21 @@ function App() {
   const [saved, setSaved] = useState([]);
   const [error, setError] = useState(null);
 
+  const backendBaseUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
+
   useEffect(() => {
     fetchSavedPersonas();
   }, []);
 
   const fetchSavedPersonas = async () => {
-    const res = await fetch('http://localhost:8000/personas');
-    const data = await res.json();
-    setSaved(data);
+    try {
+      const res = await fetch(`${backendBaseUrl}/personas`);
+      if (!res.ok) throw new Error('Failed to fetch saved personas');
+      const data = await res.json();
+      setSaved(data);
+    } catch {
+      setError('Failed to load saved personas.');
+    }
   };
 
   const handleGenerate = async () => {
@@ -24,10 +31,10 @@ function App() {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8000/persona', {
+      const response = await fetch(`${backendBaseUrl}/persona`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ persona: personaInput })
+        body: JSON.stringify({ persona: personaInput }),
       });
 
       if (!response.ok) throw new Error('Server error');
@@ -35,7 +42,7 @@ function App() {
       const data = await response.json();
       setResult(data);
       fetchSavedPersonas();
-    } catch (err) {
+    } catch {
       setError('Failed to fetch response.');
     } finally {
       setLoading(false);
