@@ -6,17 +6,17 @@ import requests
 load_dotenv()
 
 # Gemini
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+genai.configure(api_key=os.getenv("VITE_GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-pro")
 
 # Qloo
-QLOO_API_KEY = os.getenv("QLOO_API_KEY")
+VITE_QLOO_API_KEY = os.getenv("VITE_QLOO_API_KEY")
 QLOO_ENTITY = "FCE8B172-4795-43E4-B222-3B550DC05FD9"  # Example: New York
 
 
 def fetch_qloo_insights(entity_urn, location_query="New York"):
     url = "https://api.qloo.com/v2/insights/"
-    headers = {"X-Api-Key": QLOO_API_KEY}
+    headers = {"X-Api-Key": VITE_QLOO_API_KEY}
     params = {
         "filter.type": "urn:entity:place",
         "signal.interests.entities": entity_urn,
